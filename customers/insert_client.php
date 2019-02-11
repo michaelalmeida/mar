@@ -29,11 +29,13 @@
         </div>
         <div class="card-body">
           <p class="card-text">O cliente '.$firstname.' foi adicionado com sucesso.</p>
-          <a href="add.php" class="btn btn-primary">Adicionar outro</a>
+          <a href="../add.php" class="btn btn-primary">Adicionar outro</a>
         </div>
       </div>';
   } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo '<div class="alert alert-warning" role="alert">
+      Error: ' . $sql . '<br>' . $conn->error . '
+      </div>';
   }
 
   $conn->close();
