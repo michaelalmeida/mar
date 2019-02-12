@@ -10,16 +10,23 @@
 // query
 $sql = "SELECT id, firstname, lastname FROM customers";
 $result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<li class='list-group-item'>";
-        echo $row["firstname"] . " " . $row["lastname"];
-        echo "</li>";
-    }
-} else {
-    echo "No results";
-}
 
+$customers = null;
+$customer = null;
+?>
+
+<?php if ($result->num_rows > 0) : ?>
+  <?php $customers = $result->fetch_all(MYSQLI_ASSOC) ?>
+  <?php foreach ($customers as $customer) : ?>
+  <li class='list-group-item'>
+    <?php echo $customer['firstname'] . " " . $customer['lastname']; ?>
+  </li>
+<?php endforeach; ?>
+<?php else : ?>
+  <p>Nenhum registro encontrado.</p>
+<?php endif; ?>
+
+
+<?php
 $conn->close();
 ?>
